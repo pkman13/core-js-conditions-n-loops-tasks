@@ -94,8 +94,8 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  return (a === b || b === c || a === c) && a + b + c > 2 * Math.max(a, b, c);
 }
 
 /**
@@ -112,8 +112,19 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let newNum = num;
+  let result = '';
+  const digital = [10, 9, 5, 4, 1];
+  const roman = ['X', 'IX', 'V', 'IV', 'I'];
+
+  for (let i = 0; i < roman.length; i += 1) {
+    while (newNum >= digital[i]) {
+      result += roman[i];
+      newNum -= digital[i];
+    }
+  }
+  return result;
 }
 
 /**
@@ -201,8 +212,15 @@ function convertNumberToString(numberStr) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let strBack = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    strBack += str[i];
+  }
+  if (str === strBack) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -219,8 +237,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return [i];
+    }
+  }
+  return -1;
 }
 
 /**
@@ -238,8 +261,16 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let newNum = num;
+  while (newNum > 0) {
+    const currentDigit = newNum % 10;
+    if (currentDigit === digit) {
+      return true;
+    }
+    newNum = (newNum - currentDigit) / 10;
+  }
+  return false;
 }
 
 /**
